@@ -1,56 +1,1408 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <div>
-      <abbr title="Hyper Text Markup Language">HTML</abbr>= using ABBR tag
-      <br>
-      <a href="https://www.codecademy.com"  title="The best place to learn to code!">Codecademy</a> =using just title
-      <br>
-      <a href="https://www.codecademy.com"  title="The best place to learn to code!" target="_blank">Codecademy</a>= using title and target (Opens in new tab)
-      <br>
-      <a href="https://www.codecademy.com"  title="The best place to learn to code!" target="_self">Codecademy</a>= using title and target (Opens in the same tab)
-      <br>
-      <a href="https://www.codecademy.com"  title="The best place to learn to code!" target="_parent">Codecademy</a>= using title and target (Opens in the parent frame) works only in iframe otherwise its like self
-      <br>
-      <a href="https://www.codecademy.com"  title="The best place to learn to code!" target="_top">Codecademy</a>= using title and target (Opens in the full body of the window) 
-      <br>
-      <p>the <code>&lt;code&gt;</code></p> = Transform the text inside as code but you need to set up CSS this one is without CSS
-      <br>
-      <p>press<kbd>CTRL</kbd> + <kbd>S</kbd> to save a file</p>= Transform the text inside as buttons to use but you need to set up CSS this one is without CSS
-      <br>  
-      <p>the <samp>&lt;samp&gt;</samp></p> = Transform the text inside as sample output but you need to set up CSS this one is without CSS
-      <br>
-      <p>the <var>&lt;var&gt;</var></p> = Transform the text inside as variable but you need to set up CSS this one is without CSS
-      <br>
-      <p>the <dfn>&lt;dfn&gt;</dfn></p> = Transform the text inside as definition term but you need to set up CSS this one is without CSS
-      <br>
-      <p>the <cite>&lt;cite&gt;</cite></p> = Transform the text inside as citation but you need to set up CSS this one is without CSS
-      <br>
-      <br>
-      <input type="input" list="colors">
-      <datalist id="colors">
-        <option value="Red">
-        <option value="Green">
-        <option value="Blue">
-        <option value="Yellow">
-        <option value="Orange">
-        <option value="Purple">
-        <option value="Pink">
-        <option value="Black">
-        <option value="White">
-      </datalist>= Using datalist to create a list of options for the input
-      <br>
-      <dialog open="">Will gonna be popup</dialog>
-      <!-- Using dialog to create a popup, add a JS on the OPEN attribute because without open its hidden. -->
-      <br>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced HTML Reference Guide</title>
+  <style>
+    :root {
+      --primary: #3498db;
+      --primary-dark: #2980b9;
+      --secondary: #2c3e50;
+      --accent: #e74c3c;
+      --accent-dark: #c0392b;
+      --light: #ecf0f1;
+      --dark: #34495e;
+      --success: #2ecc71;
+      --warning: #f39c12;
+      --info: #1abc9c;
+      --code-bg: #f8f9fa;
+      --border-radius: 8px;
+      --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 30px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(52, 152, 219, 0.7) 0%, rgba(41, 128, 185, 0.7) 100%);
+      z-index: -1;
+    }
+    
+    h1 {
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+    }
+    
+    h2 {
+      margin: 35px 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--primary);
+      color: var(--secondary);
+      font-size: 1.8rem;
+    }
+    
+    h3 {
+      margin: 25px 0 15px 0;
+      color: var(--dark);
+      font-size: 1.4rem;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    .snippet-container {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 30px;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .snippet-container:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .snippet-title {
+      background-color: var(--secondary);
+      color: white;
+      padding: 12px 15px;
+      font-weight: bold;
+      font-size: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .snippet-tag {
+      font-size: 12px;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-weight: normal;
+    }
+    
+    .snippet-description {
+      padding: 15px;
+      background-color: var(--light);
+      border-bottom: 1px solid #ddd;
+      font-style: italic;
+    }
+    
+    .snippet-code {
+      padding: 15px;
+      background-color: var(--code-bg);
+      border-bottom: 1px solid #eee;
+      overflow-x: auto;
+    }
+    
+    .snippet-demo {
+      padding: 20px;
+      background-color: white;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .section-header-icon {
+      background-color: var(--primary);
+      color: white;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 20px;
+    }
+    
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #f1f1f1;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    
+    pre {
+      background-color: var(--code-bg);
+      border-radius: 4px;
+      padding: 15px;
+      overflow-x: auto;
+      border: 1px solid #eee;
+    }
+    
+    kbd {
+      background-color: #f7f7f7;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+      color: #333;
+      display: inline-block;
+      font-family: Arial, sans-serif;
+      font-size: 0.85em;
+      padding: 2px 5px;
+      margin: 0 2px;
+    }
+    
+    samp {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #f8f8f8;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    
+    var {
+      font-style: italic;
+      color: var(--accent);
+    }
+    
+    dfn {
+      font-style: italic;
+      font-weight: bold;
+    }
+    
+    cite {
+      font-style: italic;
+      color: #666;
+    }
+    
+    abbr {
+      text-decoration: underline dotted;
+      cursor: help;
+    }
+    
+    .nav-container {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .section-nav {
+      flex: 0 0 250px;
+      position: sticky;
+      top: 20px;
+      background-color: white;
+      padding: 20px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+    }
+    
+    .section-nav h3 {
+      margin-top: 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+    
+    .section-nav ul {
+      list-style-type: none;
+    }
+    
+    .section-nav li {
+      margin: 5px 0;
+    }
+    
+    .section-nav .nav-category {
+      font-weight: bold;
+      margin-top: 15px;
+      color: var(--secondary);
+    }
+    
+    .section-nav a {
+      display: block;
+      padding: 8px 10px;
+      color: var(--secondary);
+      text-decoration: none;
+      border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+      font-size: 0.95rem;
+    }
+    
+    .section-nav a:hover {
+      background-color: var(--light);
+      border-left: 3px solid var(--primary);
+    }
+    
+    .main-content {
+      flex: 1;
+    }
+    
+    details {
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    details summary {
+      padding: 10px 15px;
+      background-color: var(--light);
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    details summary:hover {
+      background-color: #e3e8ec;
+    }
+    
+    details p {
+      padding: 15px;
+      background-color: white;
+    }
+    
+    /* Form elements styling */
+    input, meter, progress {
+      margin: 5px 0;
+    }
+    
+    fieldset {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 15px 0;
+    }
+    
+    legend {
+      padding: 0 10px;
+      font-weight: bold;
+      color: var(--secondary);
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      transition: transform 0.3s ease;
+      border-top: 4px solid var(--primary);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    
+    .category-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      background-color: var(--light);
+      border-radius: 12px;
+      font-size: 0.8rem;
+      color: var(--dark);
+      margin-right: 5px;
+    }
+    
+    .tag-new {
+      background-color: var(--success);
+      color: white;
+    }
+    
+    .tag-deprecated {
+      background-color: var(--accent);
+      color: white;
+    }
+    
+    .tag-experimental {
+      background-color: var(--warning);
+      color: white;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+    }
+    
+    .btn:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .btn-secondary {
+      background-color: var(--secondary);
+    }
+    
+    .btn-secondary:hover {
+      background-color: var(--dark);
+    }
+    
+    .btn-accent {
+      background-color: var(--accent);
+    }
+    
+    .btn-accent:hover {
+      background-color: var(--accent-dark);
+    }
+    
+    .tooltip-container {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .custom-tooltip {
+      visibility: hidden;
+      width: 200px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -100px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .tooltip-container:hover .custom-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      color: #666;
+      border-top: 1px solid #eee;
+    }
+    
+    .meter-container, .progress-container {
+      margin: 15px 0;
+    }
+    
+    .meter-label, .progress-label {
+      display: inline-block;
+      width: 80px;
+      font-weight: bold;
+    }
+    
+    .tabs {
+      margin: 20px 0;
+    }
+    
+    .tab-buttons {
+      display: flex;
+      overflow-x: auto;
+    }
+    
+    .tab-button {
+      padding: 10px 15px;
+      background-color: #f1f1f1;
+      border: none;
+      cursor: pointer;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      transition: background-color 0.3s;
+      font-weight: 500;
+    }
+    
+    .tab-button.active {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .tab-content {
+      display: none;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-top: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .code-editor {
+      background-color: #2d2d2d;
+      color: #fff;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 20px;
+      border-radius: 5px;
+    }
+    
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+    }
+    
+    .flex-container {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .flex-item {
+      flex: 1;
+      min-width: 200px;
+      padding: 15px;
+      background-color: var(--light);
+      border-radius: 5px;
+    }
+    
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin: 10px 0;
+    }
+    
+    .demo-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      background-color: var(--light);
+      border-radius: 12px;
+      font-size: 0.8rem;
+      margin-right: 5px;
+    }
+    
+    .demo-tag-blue { background-color: var(--primary); color: white; }
+    .demo-tag-green { background-color: var(--success); color: white; }
+    .demo-tag-red { background-color: var(--accent); color: white; }
+    .demo-tag-yellow { background-color: var(--warning); color: white; }
+    
+    .tooltip-demo {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+    }
+    
+    .tooltip-demo .tooltip-text {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .tooltip-demo:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .grid-demo {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 10px;
+      margin: 10px 0;
+    }
+    
+    .grid-item {
+      background-color: var(--light);
+      padding: 10px;
+      text-align: center;
+      border-radius: 5px;
+    }
+    
+    .custom-marker {
+      list-style: none;
+    }
+    
+    .custom-marker li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 5px;
+    }
+    
+    .custom-marker li::before {
+      content: "→";
+      color: var(--primary);
+      position: absolute;
+      left: 0;
+    }
+    
+    .custom-counter {
+      list-style: none;
+      counter-reset: my-counter;
+    }
+    
+    .custom-counter li {
+      counter-increment: my-counter;
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 5px;
+    }
+    
+    .custom-counter li::before {
+      content: counter(my-counter);
+      background-color: var(--primary);
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 50%;
+      padding: 2px 6px;
+      position: absolute;
+      left: 0;
+    }
+    
+    .modern-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+    
+    .modern-table th {
+      background-color: var(--secondary);
+      color: white;
+      text-align: left;
+      padding: 10px;
+    }
+    
+    .modern-table td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .modern-table tr:nth-child(even) {
+      background-color: #f5f5f5;
+    }
+    
+    .modern-table tr:hover {
+      background-color: #e9e9e9;
+    }
+    
+    .chip {
+      display: inline-block;
+      padding: 5px 15px;
+      background-color: var(--light);
+      border-radius: 25px;
+      margin: 5px;
+      font-size: 0.9rem;
+    }
+    
+    .label {
+      display: inline-block;
+      padding: 3px 8px;
+      background-color: var(--dark);
+      color: white;
+      border-radius: 3px;
+      font-size: 0.8rem;
+    }
+    
+    .badge {
+      display: inline-block;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      background-color: var(--accent);
+      color: white;
+      text-align: center;
+      font-size: 0.7rem;
+      line-height: 20px;
+      padding: 0 6px;
+    }
+    
+    .alert {
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 5px;
+      border-left: 5px solid;
+    }
+    
+    .alert-info {
+      background-color: rgba(52, 152, 219, 0.1);
+      border-left-color: var(--primary);
+    }
+    
+    .alert-warning {
+      background-color: rgba(243, 156, 18, 0.1);
+      border-left-color: var(--warning);
+    }
+    
+    .alert-error {
+      background-color: rgba(231, 76, 60, 0.1);
+      border-left-color: var(--accent);
+    }
+    
+    .alert-success {
+      background-color: rgba(46, 204, 113, 0.1);
+      border-left-color: var(--success);
+    }
+    
+    .custom-checkbox {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      user-select: none;
+    }
+    
+    .custom-checkbox input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+    
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      background-color: #eee;
+      border-radius: 3px;
+    }
+    
+    .custom-checkbox:hover input ~ .checkmark {
+      background-color: #ccc;
+    }
+    
+    .custom-checkbox input:checked ~ .checkmark {
+      background-color: var(--primary);
+    }
+    
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+    
+    .custom-checkbox input:checked ~ .checkmark:after {
+      display: block;
+    }
+    
+    .custom-checkbox .checkmark:after {
+      left: 7px;
+      top: 3px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+      }
       
-    </div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+      .section-nav {
+        position: static;
+        width: 100%;
+      }
+      
+      .grid-demo {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Advanced HTML Reference Guide</h1>
+    <p class="subtitle">A comprehensive collection of HTML elements, attributes, and modern web techniques</p>
+  </header>
+
+  <div class="nav-container">
+    <nav class="section-nav">
+      <h3>Quick Navigation</h3>
+      
+      <div class="nav-category">Core Elements</div>
+      <ul>
+        <li><a href="#text-formatting">Text Formatting</a></li>
+        <li><a href="#modern-html-elements">Modern HTML Elements</a></li>
+        <li><a href="#interactive-elements">Interactive Elements</a></li>
+        <li><a href="#semantic-elements">Semantic Elements</a></li>
+      </ul>
+      
+      <div class="nav-category">Special Features</div>
+      <ul>
+        <li><a href="#interactive-elements">Interactive Elements</a></li>
+        <li><a href="#modern-html-elements">Modern HTML Elements</a></li>
+        <li><a href="#semantic-elements">Semantic Elements</a></li>
+        <li><a href="#accessibility-features">Accessibility Features</a></li>
+      </ul>
+      
+      <div class="nav-category">Modern HTML</div>
+      <ul>
+        <li><a href="#modern-html-elements">Modern HTML Elements</a></li>
+        <li><a href="#advanced-features">Advanced Features</a></li>
+        <li><a href="#interactive-elements">Interactive Elements</a></li>
+        <li><a href="#future-html">Emerging HTML Features</a></li>
+      </ul>
+      
+      <div class="nav-category">Advanced</div>
+      <ul>
+        <li><a href="#advanced-features">Advanced Features</a></li>
+        <li><a href="#accessibility-features">Accessibility Features</a></li>
+        <li><a href="#future-html">Emerging HTML Features</a></li>
+        <li><a href="#semantic-elements">Semantic Elements</a></li>
+      </ul>
+    </nav>
+    
+    <main class="main-content">
+      <section id="text-formatting">
+        <div class="section-header">
+          <div class="section-header-icon">T</div>
+          <h2>Text Formatting Elements</h2>
+        </div>
+        
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Abbreviation Tag
+            <span class="snippet-tag">Semantic</span>
+          </div>
+          <div class="snippet-description">Used to represent an abbreviation and provides a full description via a title attribute.</div>
+          <div class="snippet-code">
+            <pre>&lt;abbr title="Hyper Text Markup Language"&gt;HTML&lt;/abbr&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <abbr title="Hyper Text Markup Language">HTML</abbr>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Code Tag
+            <span class="snippet-tag">Semantic</span>
+          </div>
+          <div class="snippet-description">Used to display code snippets within text.</div>
+          <div class="snippet-code">
+            <pre>&lt;p&gt;The &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; tag is used for code snippets&lt;/p&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <p>The <code>&lt;code&gt;</code> tag is used for code snippets</p>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Keyboard Tag
+            <span class="snippet-tag">Semantic</span>
+          </div>
+          <div class="snippet-description">Represents keyboard input or keyboard shortcuts.</div>
+          <div class="snippet-code">
+            <pre>&lt;p&gt;Press &lt;kbd&gt;CTRL&lt;/kbd&gt; + &lt;kbd&gt;S&lt;/kbd&gt; to save a file&lt;/p&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <p>Press <kbd>CTRL</kbd> + <kbd>S</kbd> to save a file</p>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Sample Output Tag
+            <span class="snippet-tag">Semantic</span>
+          </div>
+          <div class="snippet-description">Represents sample output from a computer program.</div>
+          <div class="snippet-code">
+            <pre>&lt;p&gt;The &lt;samp&gt;&amp;lt;samp&amp;gt;&lt;/samp&gt; tag for sample output&lt;/p&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <p>The <samp>&lt;samp&gt;</samp> tag for sample output</p>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Variable Tag
+            <span class="snippet-tag">Semantic</span>
+          </div>
+          <div class="snippet-description">Represents a variable in a mathematical or programming context.</div>
+          <div class="snippet-code">
+            <pre>&lt;p&gt;The &lt;var&gt;&amp;lt;var&amp;gt;&lt;/var&gt; tag for variables&lt;/p&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <p>The <var>&lt;var&gt;</var> tag for variables</p>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Definition Tag
+            <span class="snippet-tag">Semantic</span>
+          </div>
+          <div class="snippet-description">Represents a definition term.</div>
+          <div class="snippet-code">
+            <pre>&lt;p&gt;The &lt;dfn&gt;&amp;lt;dfn&amp;gt;&lt;/dfn&gt; tag for definition terms&lt;/p&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <p>The <dfn>&lt;dfn&gt;</dfn> tag for definition terms</p>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Citation Tag
+            <span class="snippet-tag">Semantic</span>
+          </div>
+          <div class="snippet-description">Represents a citation or reference to another source.</div>
+          <div class="snippet-code">
+            <pre>&lt;p&gt;The &lt;cite&gt;&amp;lt;cite&amp;gt;&lt;/cite&gt; tag for citations&lt;/p&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <p>The <cite>&lt;cite&gt;</cite> tag for citations</p>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Mark Tag
+            <span class="snippet-tag">HTML5</span>
+          </div>
+          <div class="snippet-description">Represents text that is marked or highlighted for reference.</div>
+          <div class="snippet-code">
+            <pre>&lt;p&gt;Using mark tag for &lt;mark&gt;MARKING&lt;/mark&gt; text&lt;/p&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <p>Using mark tag for <mark>MARKING</mark> text</p>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Ruby Annotation
+            <span class="snippet-tag">Internationalization</span>
+          </div>
+          <div class="snippet-description">Used for East Asian typography, showing pronunciation or annotation.</div>
+          <div class="snippet-code">
+            <pre>&lt;ruby&gt;漢字 &lt;rt&gt;かんじ&lt;/rt&gt; &lt;rp&gt;(kanji)&lt;/rp&gt; &lt;/ruby&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <ruby>漢字 <rt>かんじ</rt> <rp>(kanji)</rp> </ruby>
+          </div>
+        </div>
+        
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Subscript and Superscript
+            <span class="snippet-tag">Formatting</span>
+          </div>
+          <div class="snippet-description">Format text as subscript or superscript.</div>
+          <div class="snippet-code">
+            <pre>&lt;p&gt;The formula for water is H&lt;sub&gt;2&lt;/sub&gt;O&lt;
+              <pre>The formula for water is H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <p>The formula for water is H<sub>2</sub>O</p>
+            <p>Area of a circle: πr<sup>2</sup></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="modern-html-elements">
+        <div class="section-header">
+          <div class="section-header-icon">M</div>
+          <h2>Modern HTML Elements</h2>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Details & Summary
+            <span class="snippet-tag">HTML5</span>
+          </div>
+          <div class="snippet-description">Creates a disclosure widget to show/hide additional content.</div>
+          <div class="snippet-code">
+            <pre>&lt;details&gt;
+  &lt;summary&gt;Click to expand&lt;/summary&gt;
+  &lt;p&gt;Hidden content displayed when expanded&lt;/p&gt;
+&lt;/details&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <details>
+              <summary>Click to expand</summary>
+              <p>Hidden content displayed when expanded</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Dialog Element
+            <span class="snippet-tag">Modern</span>
+          </div>
+          <div class="snippet-description">Creates a dialog box or modal window.</div>
+          <div class="snippet-code">
+            <pre>&lt;button id="showDialog"&gt;Open Dialog&lt;/button&gt;
+&lt;dialog id="myDialog"&gt;
+  &lt;h3&gt;Dialog Title&lt;/h3&gt;
+  &lt;p&gt;This is a dialog window.&lt;/p&gt;
+  &lt;button id="closeDialog"&gt;Close&lt;/button&gt;
+&lt;/dialog&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <button class="btn" onclick="document.getElementById('demoDialog').showModal()">Open Dialog</button>
+            <dialog id="demoDialog">
+              <h3>Dialog Title</h3>
+              <p>This is a dialog window.</p>
+              <button class="btn" onclick="document.getElementById('demoDialog').close()">Close</button>
+            </dialog>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Progress Element
+            <span class="snippet-tag">HTML5</span>
+          </div>
+          <div class="snippet-description">Represents the completion progress of a task.</div>
+          <div class="snippet-code">
+            <pre>&lt;label for="task-progress"&gt;Task progress:&lt;/label&gt;
+&lt;progress id="task-progress" value="70" max="100"&gt;70%&lt;/progress&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <label for="task-progress">Task progress:</label>
+            <progress id="task-progress" value="70" max="100">70%</progress>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Meter Element
+            <span class="snippet-tag">HTML5</span>
+          </div>
+          <div class="snippet-description">Represents a scalar measurement within a known range.</div>
+          <div class="snippet-code">
+            <pre>&lt;label for="disk-usage"&gt;Disk usage:&lt;/label&gt;
+&lt;meter id="disk-usage" value="0.7" min="0" max="1" low="0.3" high="0.8" optimum="0.5"&gt;70%&lt;/meter&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <label for="disk-usage">Disk usage:</label>
+            <meter id="disk-usage" value="0.7" min="0" max="1" low="0.3" high="0.8" optimum="0.5">70%</meter>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Picture Element
+            <span class="snippet-tag">Responsive</span>
+          </div>
+          <div class="snippet-description">Container for multiple image sources for responsive images.</div>
+          <div class="snippet-code">
+            <pre>&lt;picture&gt;
+  &lt;source media="(min-width: 800px)" srcset="large-image.jpg"&gt;
+  &lt;source media="(min-width: 480px)" srcset="medium-image.jpg"&gt;
+  &lt;img src="small-image.jpg" alt="Responsive image"&gt;
+&lt;/picture&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <p>The picture element allows developers to provide different images based on device characteristics like screen size, resolution, or orientation.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="semantic-elements">
+        <div class="section-header">
+          <div class="section-header-icon">S</div>
+          <h2>Semantic Elements</h2>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Time Element
+            <span class="snippet-tag">Semantic</span>
+          </div>
+          <div class="snippet-description">Represents a specific time or datetime.</div>
+          <div class="snippet-code">
+            <pre>&lt;p&gt;The event starts at &lt;time datetime="2023-09-15T20:00:00"&gt;8:00pm on September 15&lt;/time&gt;.&lt;/p&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <p>The event starts at <time datetime="2023-09-15T20:00:00">8:00pm on September 15</time>.</p>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Figure & Figcaption
+            <span class="snippet-tag">HTML5</span>
+          </div>
+          <div class="snippet-description">Self-contained content with an optional caption.</div>
+          <div class="snippet-code">
+            <pre>&lt;figure&gt;
+  &lt;img src="chart.jpg" alt="Bar chart showing data"&gt;
+  &lt;figcaption&gt;Fig.1 - Annual Sales Data 2022&lt;/figcaption&gt;
+&lt;/figure&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <figure>
+              <div style="width:200px;height:100px;background-color:#eee;display:flex;align-items:center;justify-content:center;">Chart Placeholder</div>
+              <figcaption>Fig.1 - Annual Sales Data 2022</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Article Element
+            <span class="snippet-tag">Semantic</span>
+          </div>
+          <div class="snippet-description">Represents a self-contained composition in a document.</div>
+          <div class="snippet-code">
+            <pre>&lt;article&gt;
+  &lt;h3&gt;Article Title&lt;/h3&gt;
+  &lt;p&gt;Content that makes sense on its own...&lt;/p&gt;
+  &lt;footer&gt;Author: John Doe&lt;/footer&gt;
+&lt;/article&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <article style="border:1px solid #ddd;padding:15px;border-radius:5px;">
+              <h3>Article Title</h3>
+              <p>Content that makes sense on its own...</p>
+              <footer>Author: John Doe</footer>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="interactive-elements">
+        <div class="section-header">
+          <div class="section-header-icon">I</div>
+          <h2>Interactive Elements</h2>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Datalist Element
+            <span class="snippet-tag">Forms</span>
+          </div>
+          <div class="snippet-description">Provides a list of predefined options for input elements.</div>
+          <div class="snippet-code">
+            <pre>&lt;label for="browser"&gt;Choose your browser:&lt;/label&gt;
+&lt;input list="browsers" id="browser" name="browser"&gt;
+&lt;datalist id="browsers"&gt;
+  &lt;option value="Chrome"&gt;
+  &lt;option value="Firefox"&gt;
+  &lt;option value="Safari"&gt;
+  &lt;option value="Edge"&gt;
+&lt;/datalist&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <label for="browser">Choose your browser:</label>
+            <input list="browsers" id="browser" name="browser">
+            <datalist id="browsers">
+              <option value="Chrome">
+              <option value="Firefox">
+              <option value="Safari">
+              <option value="Edge">
+            </datalist>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Output Element
+            <span class="snippet-tag">Forms</span>
+          </div>
+          <div class="snippet-description">Represents the result of a calculation or user action.</div>
+          <div class="snippet-code">
+            <pre>&lt;form oninput="result.value=parseInt(a.value)+parseInt(b.value)"&gt;
+  &lt;input type="range" id="a" value="50"&gt; +
+  &lt;input type="number" id="b" value="50"&gt; =
+  &lt;output name="result" for="a b"&gt;100&lt;/output&gt;
+&lt;/form&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <form oninput="result.value=parseInt(a.value)+parseInt(b.value)">
+              <input type="range" id="a" value="50"> +
+              <input type="number" id="b" value="50"> =
+              <output name="result" for="a b">100</output>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id="advanced-features">
+        <div class="section-header">
+          <div class="section-header-icon">A</div>
+          <h2>Advanced Features</h2>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Template Element
+            <span class="snippet-tag">Modern</span>
+          </div>
+          <div class="snippet-description">Contains HTML that is not rendered initially but can be used with JavaScript.</div>
+          <div class="snippet-code">
+            <pre>&lt;template id="userTemplate"&gt;
+  &lt;div class="user-card"&gt;
+    &lt;h4&gt;User Name&lt;/h4&gt;
+    &lt;p&gt;Email: user@example.com&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <template id="userTemplate">
+              <div class="user-card">
+                <h4>User Name</h4>
+                <p>Email: user@example.com</p>
+              </div>
+            </template>
+            <div id="templateOutput">Template content is not visible until cloned with JavaScript.</div>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Content Editable Attribute
+            <span class="snippet-tag">Interactive</span>
+          </div>
+          <div class="snippet-description">Makes any element editable by the user.</div>
+          <div class="snippet-code">
+            <pre>&lt;div contenteditable="true" style="padding:10px;border:1px dashed #ccc;"&gt;
+  This content is editable. Click to edit.
+&lt;/div&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <div contenteditable="true" style="padding:10px;border:1px dashed #ccc;">
+              This content is editable. Click to edit.
+            </div>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Lazy Loading
+            <span class="snippet-tag">Performance</span>
+          </div>
+          <div class="snippet-description">Defers loading images until they're near the viewport.</div>
+          <div class="snippet-code">
+            <pre>&lt;img src="large-image.jpg" loading="lazy" alt="Lazy loaded image"&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <p>The <code>loading="lazy"</code> attribute tells browsers to defer loading off-screen images until users scroll near them, improving page load performance.</p>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Color Input Type
+            <span class="snippet-tag">Forms</span>
+          </div>
+          <div class="snippet-description">Provides a color picker interface.</div>
+          <div class="snippet-code">
+            <pre>&lt;label for="colorpicker"&gt;Select a color:&lt;/label&gt;
+&lt;input type="color" id="colorpicker" value="#3498db"&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <label for="colorpicker">Select a color:</label>
+            <input type="color" id="colorpicker" value="#3498db">
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Slot Element
+            <span class="snippet-tag">Web Components</span>
+          </div>
+          <div class="snippet-description">Placeholder inside a web component used in Shadow DOM.</div>
+          <div class="snippet-code">
+            <pre>&lt;template id="element-template"&gt;
+  &lt;h2&gt;&lt;slot name="title"&gt;Default Title&lt;/slot&gt;&lt;/h2&gt;
+  &lt;div&gt;&lt;slot name="content"&gt;Default content&lt;/slot&gt;&lt;/div&gt;
+&lt;/template&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <p>Slots allow custom elements to be composed with custom content, enabling reusable components with replaceable parts.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="accessibility-features">
+        <div class="section-header">
+          <div class="section-header-icon">A11y</div>
+          <h2>Accessibility Features</h2>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            ARIA Roles
+            <span class="snippet-tag">Accessibility</span>
+          </div>
+          <div class="snippet-description">Defines the purpose of an element for assistive technologies.</div>
+          <div class="snippet-code">
+            <pre>&lt;div role="alert" aria-live="assertive"&gt;
+  Important notification for screen readers
+&lt;/div&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <div role="alert" aria-live="assertive" class="alert alert-info">
+              Important notification for screen readers
+            </div>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            ARIA Labels
+            <span class="snippet-tag">Accessibility</span>
+          </div>
+          <div class="snippet-description">Provides accessible names for elements with no visible text.</div>
+          <div class="snippet-code">
+            <pre>&lt;button aria-label="Close" class="close-button"&gt;×&lt;/button&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <button aria-label="Close" style="border:none;background:#f44336;color:white;border-radius:50%;width:30px;height:30px;font-size:20px;cursor:pointer;">×</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="future-html">
+        <div class="section-header">
+          <div class="section-header-icon">F</div>
+          <h2>Emerging HTML Features</h2>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Dialog with Modal Attribute
+            <span class="snippet-tag">Experimental</span>
+          </div>
+          <div class="snippet-description">Creates a modal dialog that disables interaction with the rest of the page.</div>
+          <div class="snippet-code">
+            <pre>&lt;button id="showModal"&gt;Show Modal Dialog&lt;/button&gt;
+&lt;dialog id="modalDialog"&gt;
+  &lt;h3&gt;Modal Dialog&lt;/h3&gt;
+  &lt;p&gt;This is a modal dialog with a backdrop.&lt;/p&gt;
+  &lt;form method="dialog"&gt;
+    &lt;button&gt;Close&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/dialog&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <button class="btn" onclick="document.getElementById('modalExample').showModal()">Show Modal Dialog</button>
+            <dialog id="modalExample">
+              <h3>Modal Dialog</h3>
+              <p>This is a modal dialog with a backdrop.</p>
+              <form method="dialog">
+                <button class="btn">Close</button>
+              </form>
+            </dialog>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Popover API
+            <span class="snippet-tag">Emerging</span>
+          </div>
+          <div class="snippet-description">Creates a popover element that can be toggled without custom JavaScript.</div>
+          <div class="snippet-code">
+            <pre>&lt;button popovertarget="myPopover"&gt;Show Popover&lt;/button&gt;
+&lt;div id="myPopover" popover&gt;
+  &lt;h3&gt;Popover Content&lt;/h3&gt;
+  &lt;p&gt;This is popover content that appears on demand.&lt;/p&gt;
+&lt;/div&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <p>The Popover API allows creating popover UIs (tooltips, menus, dialogs) that are properly layered with good keyboard navigation, without requiring custom JavaScript.</p>
+          </div>
+        </div>
+
+        <div class="snippet-container">
+          <div class="snippet-title">
+            Inert Attribute
+            <span class="snippet-tag">Emerging</span>
+          </div>
+          <div class="snippet-description">Makes elements unfocusable and unselectable, useful for modal overlays.</div>
+          <div class="snippet-code">
+            <pre>&lt;div inert&gt;
+  &lt;button&gt;This button cannot be focused or clicked&lt;/button&gt;
+  &lt;input type="text" placeholder="This input is disabled"&gt;
+&lt;/div&gt;</pre>
+          </div>
+          <div class="snippet-demo">
+            <p>The <code>inert</code> attribute makes an element and all its contents unfocusable and unavailable for interaction, which is useful for maintaining focus inside modal dialogs.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <p>Advanced HTML Reference Guide &copy; 2023-2025</p>
+  </footer>
+
+  <script>
+    // Show dialog functionality
+    document.getElementById('showDialog')?.addEventListener('click', function() {
+      document.getElementById('myDialog').showModal();
+    });
+    
+    document.getElementById('closeDialog')?.addEventListener('click', function() {
+      document.getElementById('myDialog').close();
+    });
+  </script>
+</body>
 </html>
